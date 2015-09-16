@@ -6,11 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CodingHouse Template</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Hello, world!</h1>
-
+    <h1>Team Tweeter</h1>
+    <textarea name="Tweet" rows="8" cols="40" placeholder="What's happening?"></textarea>
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Accounts
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="#">Your Account</a></li>
+      </ul>
+      <button class="btn btn-primary">Tweet</button>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
