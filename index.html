@@ -6,10 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CodingHouse Template</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div class="container">
+      <div class="row">
+        <ul class="nav nav-tabs center">
+          <li role="presentation" class="active"><a href="#">Tweet Zone</a></li>
+          <li role="presentation"><a href="#">Authorized Accounts</a></li>
+        </ul>
+      </div>
+      <div id="tweet" class="row">
+        <textarea id="tweetTemplate" cols="30" rows="10"></textarea>
+      </div>
+      <div id="buttons" class="row">
+        <button class="btn btn-primary">Tweet</button>
+        <!-- Single button -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Accounts <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Group One</a></li>
+            <li><a href="#">Group Two</a></li>
+            <li><a href="#">Group Three</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
