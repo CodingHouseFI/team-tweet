@@ -6,10 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CodingHouse Template</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/style.css">
+    <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
 
   </head>
   <body>
-    <h1>Hello, world!</h1>
+  <header><h1>Team Tweet</h1></header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="well">
+          <form>
+            <textarea class="form-control" ng-trim="false" placeholder="What's happening?" ng-model="tweet"></textarea>
+          </form>
+          <p class="help-block">
+            <span>140</span>
+            <!--<span ng-class="{'red': invalidTweetLength()}">{{remainingCharacters()}}</span>-->
+          </p>
+          <select id="twitts">
+            <option>Ekk</option>
+            <option>Akk</option>
+            <option>Oop</option>
+            <option>Samer</option>
+          </select>
+          <button type="button" ng-click="sendTweet()" class="btn btn-success" ng-disabled="invalidTweetLength()">Tweet</button>
+        </div>
+
+        <!--<ul class="list-unstyled" >-->
+          <!--<li ng-repeat="tweet in tweetList track by $index">-->
+            <!--{{tweet}}-->
+          <!--</li>-->
+        <!--</ul>-->
+
+        <!--<div ng-if="tweetList.length === 0">-->
+          <!--No tweets here...-->
+        <!--</div>-->
+
+      </div>
+    </div>
+  </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
