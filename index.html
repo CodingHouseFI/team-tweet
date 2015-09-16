@@ -29,9 +29,8 @@
           </div>
           <div class="col-sm-8">
             <select id="account-select" ng-model="fromAcount" class="form-control">
-              <option>Select Account</option>
-              <option>@codinghouse</option>
-              <option>@agilelabs</option>
+             <option ng-repeat = "user in userList track by $index">{{user}}</option>
+              
             </select>
           </div>
         </div>
@@ -41,3 +40,4 @@
     <script src="dist/bundle.js"></script>
   </body>
 </html>
+
