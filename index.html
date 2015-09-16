@@ -8,8 +8,35 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
   </head>
-  <body>
-    <h1>Hello, world!</h1>
+    <body ng-app='team-tweet' ng-controller="tweetCtrl">
+    
+<div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div class="well">
+            <form>
+              <textarea class="form-control" ng-trim="false" placeholder="What's happening?" ng-model="tweet"></textarea>
+            </form>
+            <p class="help-block">
+              <span ng-class="{'red': invalidTweetLength()}">{{remainingCharacters()}}</span>
+            </p>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Account
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">{{Accounts}}</a></li>
+              </ul>
+            </div>
+           
+          </div>
+         <button type="button">Tweet</button>
+        </div>
+      </div>
+    </div>
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
