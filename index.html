@@ -5,15 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CodingHouse Template</title>
+  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha256-obxCG8hWR3FEKvV19p/G6KgEYm1v/u1FnRTS7Bc4Ii8= sha512-8Xs5FuWgtHH1JXye8aQcxVEtLqozJQAu8nhPymuRqeEslT6nJ2OgEYeS3cKiXasOVxYPN80DDoOTKWgOafU1LQ==" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+ <script src="dist/bundle.js"></script>
   </head>
-  <body>
-    <h1>Hello, world!</h1>
+  <body ng-app="twitterClone" ng-controller="TweetCtrl">
+    <h1>Team Tweet</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation" class="active"><a href="#">Tweet</a></li>
+  <li role="presentation" class="active"><a href="#">Authorized</a></li>
+</ul>
+  </div>
+  
+</nav
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div class="well">
+            <form>
+              <textarea class="form-control" ng-trim="false" placeholder="What's happening?" ng-model="tweet"></textarea>
+            </form>
+            <p class="help-block">
+              <span ng-class="{'red': invalidTweetLength()}">{{remainingCharacters()}}</span>
+            </p>
+            <button type="button" ng-click="sendTweet()" class="btn btn-success" ng-disabled="invalidTweetLength()">Tweet</button>
+          </div>
 
+          <ul class="list-unstyled" >
+            <li ng-repeat="tweet in tweetList track by $index">
+              {{tweet}}
+            </li>
+          </ul>
+
+          <div ng-if="tweetList.length === 0">
+            No tweets here...
+          </div>
+
+          <img ng-src="{{perfectLoop}}" ng-click="hideLoop()" ng-show="perfectLoop" />
+
+        </div>
+      </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
-    <script src="dist/bundle.js"></script>
+    
   </body>
 </html>
