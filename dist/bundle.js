@@ -106,9 +106,9 @@
   \**********************/
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 	
-	window.app = angular.module("team-tweet", ["ui.router"]);
+	window.app = angular.module("team-tweet", ['ui.router']);
 	
 	app.config(function ($stateProvider, $urlRouterProvider) {
 	
