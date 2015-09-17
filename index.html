@@ -7,34 +7,13 @@
     <title>CodingHouse Template</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.min.js'></script>
 
   </head>
   <body ng-app="team-tweet">
-    <div class="container">
-      <div class="row">
-        <ul class="nav nav-tabs center">
-          <li role="presentation" class="active"><a href="#">Tweet Zone</a></li>
-          <li role="presentation"><a href="#">Authorized Accounts</a></li>
-        </ul>
-      </div>
-      <div ng-controller="TweetCtrl">
-        <div id="tweet" class="row">
-          <div class="col-sm-12">
-            <textarea id="tweetTemplate" ng-model="data.tweetText" rows="10" class="form-control"></textarea>
-          </div>
-        </div>
-        <div id="buttons" class="row">
-          <div class="col-sm-4">
-            <button class="btn btn-primary" ng-click="tweetAs()">Tweet</button>
-          </div>
-          <div class="col-sm-8">
-            <select id="account-select" ng-model="data.fromAccount" class="form-control" ng-change="test()">
-              <option value='' disabled>- Choose an Account -</option>
-              <option ng-repeat="account in accountList">{{account}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
+    <div class="container" id='main' ng-controller='mainController'>
+      <div ng-view></div>
+
     </div>
     <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
     <script src="dist/bundle.js"></script>
