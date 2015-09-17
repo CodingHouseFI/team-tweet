@@ -1,0 +1,18 @@
+<div>
+  <div id="tweet" class="row">
+    <div class="col-sm-12">
+      <textarea id="tweetTemplate" ng-model="data.tweetText" rows="10" class="form-control"></textarea>
+    </div>
+  </div>
+  <div id="buttons" class="row">
+    <div class="col-sm-4">
+      <button class="btn btn-primary" ng-click="tweetAs()">Tweet</button>
+    </div>
+    <div class="col-sm-8">
+      <select id="account-select" ng-model="data.fromAccount" class="form-control">
+        <option value='' disabled>- Choose an Account -</option>
+        <option ng-repeat="account in accountList">{{account}}</option>
+      </select>
+    </div>
+  </div>
+</div>

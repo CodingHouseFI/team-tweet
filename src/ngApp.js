@@ -1,1 +1,1 @@
-window.app = angular.module("team-tweet", []);
+window.app = angular.module("team-tweet", ['ui.router']);
