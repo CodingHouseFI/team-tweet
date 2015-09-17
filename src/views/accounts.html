@@ -1,0 +1,18 @@
+<div>
+  <div id="account" class="row">
+    <div class="col-sm-12">
+      <h3 id="accountTemplate" ng-model="accountNAme" rows="10" class="form-control"></h3>
+    </div>
+  </div>
+  <div id="buttons" class="row">
+    <div class="col-sm-4">
+      <button class="btn btn-primary" ng-click="addAccount()">Add</button>
+    </div>
+    <div class="col-sm-8">
+      <ol id="account-select" ng-model="fromAccount" class="form-control">
+        <option value='' disabled>- Choose an Account -</option>
+        <option ng-repeat="account in accountList">{{account}}</option>
+      </ol>
+    </div>
+  </div>
+</div>
