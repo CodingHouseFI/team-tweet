@@ -1,19 +1,10 @@
-let hot = "HOT";
-console.log(`ES2015 is ${hot}`);
+import authorizeGuests from "./authorize";
 
-let authGuests = () => {
-  if (localStorage["firebase:session::twiffer"]) {
-    return;
-  }
-};
+let app = angular.module("team-tweet", []);
 
-var ref = new Firebase("https://twiffer.firebaseio.com");
-ref.authWithOAuthPopup("twitter", function(error, authData) {
-  if (error) {
-    console.log("Login Failed!", error);
-  } else {
-    console.log("Authenticated successfully with payload:", authData);
-  }
+app.controller("TweetCtrl", ($scope) => {
+
+  $scope.peepsInOurList = [{name:"peep1"},{ name:"peep2"}, {name:"peep3"}, {name:"samer"}];
 });
 
-authGuests();
+authorizeGuests();

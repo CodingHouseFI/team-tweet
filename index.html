@@ -6,48 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CodingHouse Template</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="src/style.css">
-    <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.js"></script>
 
   </head>
-  <body>
-  <header><h1>Team Tweet</h1></header>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        <div class="well">
-          <form>
-            <textarea class="form-control" ng-trim="false" placeholder="What's happening?" ng-model="tweet"></textarea>
-          </form>
-          <p class="help-block">
-            <span>140</span>
-            <!--<span ng-class="{'red': invalidTweetLength()}">{{remainingCharacters()}}</span>-->
-          </p>
-          <select id="twitts">
-            <option>Ekk</option>
-            <option>Akk</option>
-            <option>Oop</option>
-            <option>Samer</option>
-          </select>
-          <button type="button" ng-click="sendTweet()" class="btn btn-success" ng-disabled="invalidTweetLength()">Tweet</button>
+  <body ng-app="team-tweet">
+    <div class="container">
+      <div class="row">
+        <ul class="nav nav-tabs center">
+          <li role="presentation" class="active"><a href="#">Tweet Zone</a></li>
+          <li role="presentation"><a href="#">Authorized Accounts</a></li>
+        </ul>
+      </div>
+      <div ng-controller="TweetCtrl">
+        <div id="tweet" class="row">
+          <div class="col-sm-12">
+            <textarea id="tweetTemplate" ng-model="tweetText" rows="10" class="form-control"></textarea>
+          </div>
         </div>
-
-        <!--<ul class="list-unstyled" >-->
-          <!--<li ng-repeat="tweet in tweetList track by $index">-->
-            <!--{{tweet}}-->
-          <!--</li>-->
-        <!--</ul>-->
-
-        <!--<div ng-if="tweetList.length === 0">-->
-          <!--No tweets here...-->
-        <!--</div>-->
-
+        <div id="buttons" class="row">
+          <div class="col-sm-4">
+            <button class="btn btn-primary" ng-click="tweetAs()">Tweet</button>
+          </div>
+          <div class="col-sm-8">
+            <select id="account-select" ng-model="fromAccount" class="form-control" ng-options="peep.name for peep in peepsInOurList">
+            </select>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
     <script src="dist/bundle.js"></script>
   </body>
 </html>

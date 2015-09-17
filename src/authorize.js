@@ -1,7 +1,4 @@
-let hot = "HOT";
-console.log(`ES2015 is ${hot}`);
-
-let authorizeGuests = () => {
+export default () => {
   if ( localStorage["firebase:session::teamtweet15"] ) {
     return;
   }
@@ -15,6 +12,3 @@ let authorizeGuests = () => {
     }
   });
 };
-
-
-authorizeGuests();

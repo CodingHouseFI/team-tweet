@@ -45,29 +45,54 @@
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	var _authorize = __webpack_require__(/*! ./authorize */ 1);
+	
+	var _authorize2 = _interopRequireDefault(_authorize);
+	
+	var app = angular.module("team-tweet", []);
+	
+	app.controller("TweetCtrl", function ($scope) {
+	
+	  $scope.peepsInOurList = [{ name: "peep1" }, { name: "peep2" }, { name: "peep3" }, { name: "samer" }];
+	});
+	
+	(0, _authorize2["default"])();
+
+/***/ },
+/* 1 */
+/*!**************************!*\
+  !*** ./src/authorize.js ***!
+  \**************************/
 /***/ function(module, exports) {
 
 	"use strict";
 	
-	var hot = "HOT";
-	console.log("ES2015 is " + hot);
-	
-	var authGuests = function authGuests() {
-	  if (localStorage["firebase:session::twiffer"]) {
-	    return;
-	  }
-	};
-	
-	var ref = new Firebase("https://twiffer.firebaseio.com");
-	ref.authWithOAuthPopup("twitter", function (error, authData) {
-	  if (error) {
-	    console.log("Login Failed!", error);
-	  } else {
-	    console.log("Authenticated successfully with payload:", authData);
-	  }
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
 	});
 	
-	authGuests();
+	exports["default"] = function () {
+	  if (localStorage["firebase:session::teamtweet15"]) {
+	    return;
+	  }
+	
+	  var ref = new Firebase("https://teamtweet15.firebaseio.com");
+	  ref.authWithOAuthPopup("twitter", function (error, authData) {
+	    if (error) {
+	      alert("Login Failed!", error);
+	    } else {
+	      alert("Authenticated successfully with payload:", authData);
+	    }
+	  });
+	};
+	
+	module.exports = exports["default"];
 
 /***/ }
 /******/ ]);
