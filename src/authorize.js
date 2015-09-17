@@ -9,6 +9,11 @@ export default () => {
       alert("Login Failed!", error);
     } else {
       alert("Authenticated successfully with payload:", authData);
+      ref.child("users").push(authData);
     }
   });
 };
+
+
+
+//curl -X POST -d '{"jameela": "AMAING!!!"}' 'https://twiffer.firebaseio.com/tests.json'
