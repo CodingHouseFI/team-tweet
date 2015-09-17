@@ -63,6 +63,8 @@
 	
 	__webpack_require__(/*! ./controllers/TweetCtrl */ 5);
 	
+	__webpack_require__(/*! ./controllers/AccountCtrl */ 6);
+	
 	(0, _authorize2["default"])();
 
 /***/ },
@@ -116,6 +118,10 @@
 	    url: '/',
 	    templateUrl: 'templates/home.html',
 	    controller: "TweetCtrl"
+	  }).state('accounts', {
+	    url: '/accounts',
+	    templateUrl: 'templates/accounts.html',
+	    controller: "AccountsCtrl"
 	  });
 	});
 
@@ -128,15 +134,27 @@
 
 	"use strict";
 	
-	app.service("accountService", function () {
-	  var accounts = [];
+	app.service("accountService", function ($timeout) {
+	  var currentAdmin = JSON.parse(localStorage["firebase:session::teamtweet15"]).twitter.username;
+	  var adminRef = new Firebase("https://teamtweet15.firebaseio.com/adminAccounts/" + currentAdmin);
+	
+	  var accountsForCurrentAdmin = [];
 	  this.getAll = function () {
-	    return accounts;
+	    return accountsForCurrentAdmin;
 	  };
 	
-	  this.add = function (username) {
-	    if (accounts.indexOf(username) === -1) {
-	      accounts.push(username);
+	  adminRef.on("child_added", function (snapshot) {
+	    var twitterHandle = snapshot.val();
+	    $timeout(function () {
+	      accountsForCurrentAdmin.push(twitterHandle);
+	    }, 0);
+	    console.log(twitterHandle);
+	  });
+	
+	  this.addAccount = function (twitterHandle) {
+	    if (accountsForCurrentAdmin.indexOf(twitterHandle) === -1) {
+	      adminRef.push(twitterHandle);
+	      //accountsForCurrentAdmin.push(twitterHandle);
 	    }
 	  };
 	});
@@ -167,15 +185,28 @@
 	"use strict";
 	
 	app.controller("TweetCtrl", function ($scope, accountService, apiService) {
-	  accountService.add("@Acct1");
-	  accountService.add("@Acct2");
-	  accountService.add("@Acct3");
-	  accountService.add("@Acct3"); // Duplicates are ignored
-	
 	  $scope.accountList = accountService.getAll();
 	
 	  $scope.tweetAs = function () {
 	    apiService.tweetAs($scope.data);
+	  };
+	});
+
+/***/ },
+/* 6 */
+/*!****************************************!*\
+  !*** ./src/controllers/AccountCtrl.js ***!
+  \****************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	app.controller("AccountsCtrl", function ($scope, accountService, apiService) {
+	  $scope.accounts = accountService.getAll();
+	
+	  $scope.addAccount = function () {
+	    accountService.addAccount($scope.twitterHandle);
+	    $scope.twitterHandle = "";
 	  };
 	});
 
