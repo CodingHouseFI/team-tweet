@@ -1,42 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CodingHouse Template</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.js"></script>
 
-  </head>
-  <body ng-app="team-tweet">
-    <div class="container">
-      <div class="row">
-        <ul class="nav nav-tabs center">
-          <li role="presentation" class="active"><a href="#">Tweet Zone</a></li>
-          <li role="presentation"><a href="#">Authorized Accounts</a></li>
-        </ul>
-      </div>
-      <div ng-controller="TweetCtrl">
-        <div id="tweet" class="row">
-          <div class="col-sm-12">
-            <textarea id="tweetTemplate" ng-model="data.tweetText" rows="10" class="form-control"></textarea>
-          </div>
-        </div>
-        <div id="buttons" class="row">
-          <div class="col-sm-4">
-            <button class="btn btn-primary" ng-click="tweetAs()">Tweet</button>
-          </div>
-          <div class="col-sm-8">
-            <select id="account-select" ng-model="data.fromAccount" class="form-control" ng-change="test()">
-              <option value='' disabled>- Choose an Account -</option>
-              <option ng-repeat="account in accountList">{{account}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
-    <script src="dist/bundle.js"></script>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <style>
+  .navbar { border-radius:0; }
+  </style>
+
+</head>
+
+<body ng-app="routerApp" >
+
+  <nav class="navbar navbar-inverse" role="navigation">
+
+    <ul class="nav navbar-nav">
+      <li><a ui-sref="tweet-team">Home</a></li>
+      <li><a ui-sref="auth">Authorize</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    
+    <div ui-view></div>
+
+  </div>
+  <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+  <script src="dist/bundle.js"></script>
+
+</body>
 </html>
