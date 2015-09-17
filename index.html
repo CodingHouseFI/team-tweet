@@ -28,7 +28,9 @@
             <button class="btn btn-primary" ng-click="tweetAs()">Tweet</button>
           </div>
           <div class="col-sm-8">
-            <select id="account-select" ng-model="fromAccount" class="form-control" ng-options="peep.name for peep in peepsInOurList">
+            <select id="account-select" ng-model="fromAccount" class="form-control" ng-change="test()">
+              <option value='' disabled>- Choose an Account -</option>
+              <option ng-repeat="peep in peepsInOurList">{{account}}</option>
             </select>
           </div>
         </div>

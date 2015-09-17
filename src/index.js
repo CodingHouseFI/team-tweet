@@ -1,4 +1,7 @@
 import authorizeGuests from "./authorize";
+import "./ngApp";
+import "./services/accountService";
+import "./controllers/TweetCtrl";
 
 let app = angular.module("team-tweet", []);
 
