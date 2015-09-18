@@ -3,7 +3,7 @@ app.service("accountService", function($timeout) {
   var iCanTweetAsRef, authorizedRef= new Firebase("https://teamtweet15.firebaseio.com/authorizedTweeters/" + loggedInAccount);
   var loggedInTweetAsRef = new Firebase("https://teamtweet15.firebaseio.com/ICanTweetAsAccounts/" + loggedInAccount);
 
-  var authorizedForLoggedInAccount = [], accountsYouCanTweetAs =[];
+  var authorizedForLoggedInAccount = {}, accountsYouCanTweetAs =[];
 
   this.getAll = function () {
     return authorizedForLoggedInAccount;
@@ -13,16 +13,24 @@ app.service("accountService", function($timeout) {
     return accountsYouCanTweetAs;
   };
 
-  loggedInTweetAsRef.on
+
 
   authorizedRef.on("child_added", function(snapshot) {
+    var fbKey = snapshot.key();
     var twitterHandle = snapshot.val();
     $timeout(function() {
-      authorizedForLoggedInAccount.push(twitterHandle);
+      authorizedForLoggedInAccount[fbKey] = twitterHandle;
     }, 0);
     console.log(twitterHandle);
   });
 
+  loggedInTweetAsRef.on ("child_added", function(snapshot) {
+    var twitterHandle = snapshot.val();
+    $timeout(function() {
+      accountsYouCanTweetAs.push(twitterHandle);
+    }, 0);
+    console.log(twitterHandle);
+  });
 
   this.addAccount = function(twitterHandle) {
     twitterHandle = twitterHandle.toLowerCase();
@@ -34,8 +42,8 @@ app.service("accountService", function($timeout) {
     }
   };
 
-  this.deleteAuthorizedAccount = function(twitterHandle) {
-    (authorizedRef).remove(twitterHandle);
+  this.deleteAuthorizedAccount = function(fbKey) {
+    (authorizedRef).remove(authorizedRef[fbKey]);
   }
 
 });

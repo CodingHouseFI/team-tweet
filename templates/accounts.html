@@ -7,5 +7,5 @@
 
 <h1>Authorized Users</h1>
 <ul>
-  	<li ng-repeat='account in accounts' ng-click="deleteAccount(account)">{{account}}</li>
+  	<li ng-repeat='(key, twitterHandle) in accounts' ng-click="deleteAccount(key)">Twitter Handle is {{twitterHandle}}</li>
 </ul>
