@@ -7,8 +7,7 @@ import "./services/accountService";
 import "./services/apiService";
 
 import "./controllers/TweetCtrl";
-import "./controllers/AccountCtrl";
-import "./controllers/NavCtrl.js";
-
+import "./controllers/AccountsCtrl";
+import "./controllers/NavCtrl";
 
 authorizeGuests();

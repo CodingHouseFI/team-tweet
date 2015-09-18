@@ -1,4 +1,3 @@
-
 window.app = angular.module("team-tweet", ['ui.router'])
 
     .constant("ttConfig", {
@@ -10,15 +9,14 @@ window.app = angular.module("team-tweet", ['ui.router'])
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-    .state('home', {
-      url: '/',
-      templateUrl: 'templates/home.html',
-      controller: "TweetCtrl"
-    })
-    .state('accounts', {
-      url: '/accounts',
-      templateUrl: 'templates/accounts.html',
-      controller: "AccountsCtrl"
-    })
-
+  .state('home', {
+    url: '/',
+    templateUrl: 'templates/home.html',
+    controller: "TweetCtrl"
+  })
+  .state('accounts', {
+    url: '/accounts',
+    templateUrl: 'templates/accounts.html',
+    controller: "AccountsCtrl"
+  })
 });

@@ -10,7 +10,7 @@
     <div class="col-sm-8">
       <select id="account-select" ng-model="data.fromAccount" class="form-control" ng-change="test()">
         <option value='' disabled>- Choose an Account -</option>
-        <option ng-repeat="account in accountsICanTweetAs">{{account}}</option>
+        <option ng-repeat="account in accountsICanTweetAs track by $index">{{account}}</option>
       </select>
     </div>
   </div>

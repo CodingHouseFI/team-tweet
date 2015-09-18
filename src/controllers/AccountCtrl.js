@@ -4,7 +4,7 @@ app.controller("AccountsCtrl", ($scope, accountService, apiService) => {
   $scope.addAccount = () => {
     accountService.addAccount($scope.twitterHandle);
     $scope.twitterHandle = "";
-  }
+  };
 
   $scope.deleteAccount = (twitterHandle) => {
     accountService.deleteAuthorizedAccount(twitterHandle);
