@@ -1,7 +1,11 @@
 
-window.app = angular.module("team-tweet", ['ui.router']);
+window.app = angular.module("team-tweet", ['ui.router'])
 
-app.config(function($stateProvider, $urlRouterProvider) {
+    .constant("ttConfig", {
+      "fbDomain": "https://teamtweet15.firebaseio.com/",
+    })
+
+    .config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/');
 

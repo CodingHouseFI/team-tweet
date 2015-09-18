@@ -1,7 +1,7 @@
-app.service("accountService", function($timeout) {
-  var loggedInAccount = JSON.parse(localStorage["firebase:session::teamtweet15"]).twitter.username;
-  var iCanTweetAsRef, authorizedRef= new Firebase("https://teamtweet15.firebaseio.com/authorizedTweeters/" + loggedInAccount);
-  var loggedInTweetAsRef = new Firebase("https://teamtweet15.firebaseio.com/ICanTweetAsAccounts/" + loggedInAccount);
+app.service("accountService", function($timeout, ttConfig, authService) {
+  var loggedInAccount = authService.currentAccount;
+  var iCanTweetAsRef, authorizedRef= new Firebase(`${ttConfig.fbDomain}authorizedTweeters/${loggedInAccount}`);
+  var loggedInTweetAsRef = new Firebase(`${ttConfig.fbDomain}ICanTweetAsAccounts/${loggedInAccount}`);
 
   var authorizedForLoggedInAccount = {}, accountsYouCanTweetAs = [];
 
@@ -54,6 +54,8 @@ app.service("accountService", function($timeout) {
     console.log(fbKey);
     (authorizedRef).child(fbKey).remove();
   }
+
+
 
 });
 

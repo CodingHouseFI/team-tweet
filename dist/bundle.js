@@ -57,13 +57,17 @@
 	
 	__webpack_require__(/*! ./ngApp */ 2);
 	
-	__webpack_require__(/*! ./services/accountService */ 3);
+	__webpack_require__(/*! ./services/authService */ 3);
 	
-	__webpack_require__(/*! ./services/apiService */ 4);
+	__webpack_require__(/*! ./services/accountService */ 4);
 	
-	__webpack_require__(/*! ./controllers/TweetCtrl */ 5);
+	__webpack_require__(/*! ./services/apiService */ 5);
 	
-	__webpack_require__(/*! ./controllers/AccountCtrl */ 6);
+	__webpack_require__(/*! ./controllers/TweetCtrl */ 6);
+	
+	__webpack_require__(/*! ./controllers/AccountCtrl */ 7);
+	
+	__webpack_require__(/*! ./controllers/NavCtrl.js */ 8);
 	
 	(0, _authorize2["default"])();
 
@@ -106,11 +110,11 @@
   \**********************/
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 	
-	window.app = angular.module("team-tweet", ['ui.router']);
-	
-	app.config(function ($stateProvider, $urlRouterProvider) {
+	window.app = angular.module("team-tweet", ['ui.router']).constant("ttConfig", {
+	  "fbDomain": "https://teamtweet15.firebaseio.com/"
+	}).config(function ($stateProvider, $urlRouterProvider) {
 	
 	  $urlRouterProvider.otherwise('/');
 	
@@ -127,6 +131,22 @@
 
 /***/ },
 /* 3 */
+/*!*************************************!*\
+  !*** ./src/services/authService.js ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Created by HUQ on 9/17/15.
+	 */
+	"use strict";
+	
+	app.service("authService", function () {
+	  this.currentAccount = JSON.parse(localStorage["firebase:session::teamtweet15"]).twitter.username;
+	});
+
+/***/ },
+/* 4 */
 /*!****************************************!*\
   !*** ./src/services/accountService.js ***!
   \****************************************/
@@ -134,11 +154,11 @@
 
 	"use strict";
 	
-	app.service("accountService", function ($timeout) {
-	  var loggedInAccount = JSON.parse(localStorage["firebase:session::teamtweet15"]).twitter.username;
+	app.service("accountService", function ($timeout, ttConfig, authService) {
+	  var loggedInAccount = authService.currentAccount;
 	  var iCanTweetAsRef,
-	      authorizedRef = new Firebase("https://teamtweet15.firebaseio.com/authorizedTweeters/" + loggedInAccount);
-	  var loggedInTweetAsRef = new Firebase("https://teamtweet15.firebaseio.com/ICanTweetAsAccounts/" + loggedInAccount);
+	      authorizedRef = new Firebase(ttConfig.fbDomain + "authorizedTweeters/" + loggedInAccount);
+	  var loggedInTweetAsRef = new Firebase(ttConfig.fbDomain + "ICanTweetAsAccounts/" + loggedInAccount);
 	
 	  var authorizedForLoggedInAccount = {},
 	      accountsYouCanTweetAs = [];
@@ -192,7 +212,7 @@
 	});
 
 /***/ },
-/* 4 */
+/* 5 */
 /*!************************************!*\
   !*** ./src/services/apiService.js ***!
   \************************************/
@@ -208,7 +228,7 @@
 	});
 
 /***/ },
-/* 5 */
+/* 6 */
 /*!**************************************!*\
   !*** ./src/controllers/TweetCtrl.js ***!
   \**************************************/
@@ -225,7 +245,7 @@
 	});
 
 /***/ },
-/* 6 */
+/* 7 */
 /*!****************************************!*\
   !*** ./src/controllers/AccountCtrl.js ***!
   \****************************************/
@@ -244,6 +264,22 @@
 	  $scope.deleteAccount = function (twitterHandle) {
 	    accountService.deleteAuthorizedAccount(twitterHandle);
 	  };
+	});
+
+/***/ },
+/* 8 */
+/*!************************************!*\
+  !*** ./src/controllers/NavCtrl.js ***!
+  \************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Created by HUQ on 9/17/15.
+	 */
+	"use strict";
+	
+	app.controller("NavCtrl", function ($scope, authService) {
+	  $scope.loggedInUserHandle = authService.currentAccount;
 	});
 
 /***/ }

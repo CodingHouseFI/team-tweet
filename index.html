@@ -10,9 +10,11 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
   <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 </head>
 <body ng-app="team-tweet">
-<div class="container">
+
+<div class="container" ng-controller="NavCtrl">
   <div class="row">
     <ul class="nav nav-tabs center">
       <li role="presentation">
@@ -21,12 +23,14 @@
       <li role="presentation">
         <a href="#" ui-sref="accounts">Authorized Accounts</a>
       </li>
+      Logged in as {{loggedInUserHandle}}
     </ul>
   </div>
 
   <div ui-view></div>
+  </div>
 
-</div>
 <script src="dist/bundle.js"></script>
 </body>
+
 </html>
