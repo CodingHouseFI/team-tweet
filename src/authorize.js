@@ -13,3 +13,7 @@ export default () => {
     }
   });
 };
+
+
+
+//curl -X POST -d '{"jameela": "AMAING!!!"}' 'https://twiffer.firebaseio.com/tests.json'

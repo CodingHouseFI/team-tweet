@@ -1,5 +1,5 @@
 app.controller("TweetCtrl", ($scope, accountService, apiService) => {
-  $scope.accountsICanTweetAs = accountService.getAllAccountsYouCanTweetAs();
+  $scope.accountList = accountService.getAllAccountsYouCanTweetAs();
 
   $scope.tweetAs = function() {
     apiService.tweetAs($scope.data);

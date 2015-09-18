@@ -6,6 +6,6 @@ import "./services/accountService";
 import "./services/apiService";
 
 import "./controllers/TweetCtrl";
-import "./controllers/AccountsCtrl";
+import "./controllers/AccountCtrl";
 
 authorizeGuests();
