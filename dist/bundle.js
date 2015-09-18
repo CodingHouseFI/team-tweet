@@ -160,6 +160,13 @@
 	    console.log(twitterHandle);
 	  });
 	
+	  authorizedRef.on("child_removed", function (snapshot) {
+	    var fbKey = snapshot.key();
+	    $timeout(function () {
+	      delete authorizedForLoggedInAccount[fbKey];
+	    }, 0);
+	  });
+	
 	  loggedInTweetAsRef.on("child_added", function (snapshot) {
 	    var twitterHandle = snapshot.val();
 	    $timeout(function () {
@@ -179,7 +186,8 @@
 	  };
 	
 	  this.deleteAuthorizedAccount = function (fbKey) {
-	    authorizedRef.remove(authorizedRef[fbKey]);
+	    console.log(fbKey);
+	    authorizedRef.child(fbKey).remove();
 	  };
 	});
 

@@ -25,6 +25,13 @@ app.service("accountService", function($timeout) {
     console.log(twitterHandle);
   });
 
+  authorizedRef.on("child_removed", function(snapshot) {
+    var fbKey = snapshot.key();
+    $timeout(function() {
+      delete authorizedForLoggedInAccount[fbKey];
+    }, 0);
+  });
+
   loggedInTweetAsRef.on ("child_added", function(snapshot) {
     var twitterHandle = snapshot.val();
     $timeout(function() {
@@ -43,8 +50,9 @@ app.service("accountService", function($timeout) {
     // }
   };
 
-  this.deleteAuthorizedAccount = function(fbKey) {
-    (authorizedRef).remove(authorizedRef[fbKey]);
+  this.deleteAuthorizedAccount = (fbKey) => {
+    console.log(fbKey);
+    (authorizedRef).child(fbKey).remove();
   }
 
 });
