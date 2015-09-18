@@ -21,6 +21,14 @@ app.service("accountService", function($timeout) {
     }, 0);
   });
 
+  authorizedRef.on("child_removed", function(snapshot) {
+    var fbKey = snapshot.key();
+    var twitterHandle = snapshot.val();
+    $timeout(function() {
+      delete authorizedForLoggedInAccount[fbKey];
+    }, 0);
+  });
+
   loggedInTweetAsRef.on("child_added", function(snapshot) {
     var twitterHandle = snapshot.val();
     $timeout(function() {
@@ -36,4 +44,9 @@ app.service("accountService", function($timeout) {
       iCanTweetAsRef.push(loggedInAccount);
     // }
   };
+
+  this.removeAuthorizedAccount = (key) => {
+    authorizedRef.child(key).remove()
+  };
+
 });
