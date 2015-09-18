@@ -7,7 +7,7 @@
 
 <h1>Authorized Users</h1>
 <ul>
-  <li ng-repeat='(key, twitterHandle) in accounts track by $index'>
+  <li ng-repeat='(key, twitterHandle) in authorizedAccounts track by $index'>
     {{twitterHandle}}
     <a href="#" ng-click="removeAuthorizedAccount(key)">
       <span class="glyphicon glyphicon-trash"></span>

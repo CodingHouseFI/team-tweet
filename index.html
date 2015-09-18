@@ -12,13 +12,16 @@
   </head>
   <body ng-app="team-tweet">
     <div class="container">
-      <div class="row">
+      <div class="row" ng-controller="NavCtrl">
         <ul class="nav nav-tabs center">
           <li role="presentation">
             <a href="#" ui-sref="home">Tweet Zone</a>
           </li>
           <li role="presentation">
             <a href="#" ui-sref="accounts">Authorized Accounts</a>
+          </li>
+          <li role="presentation">
+            Logged in as {{loggedInUserHandle}}
           </li>
         </ul>
       </div>
