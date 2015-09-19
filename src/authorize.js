@@ -3,13 +3,14 @@ export default () => {
     return;
   }
 
-  var ref = new Firebase("https://teamtweet15.firebaseio.com");
+  var ref = new Firebase("https://teamtweet15.firebaseio.com/users");
   ref.authWithOAuthPopup("twitter", function(error, authData) {
     if (error) {
       alert("Login Failed!", error);
     } else {
-      alert("Authenticated successfully with payload:", authData);
-      ref.child("users").push(authData);
+      let userName = authData.twitter.username.toLowerCase();
+      alert("Authenticated successfully as: " + userName);
+      ref.child(userName).set(authData);
     }
   });
 };

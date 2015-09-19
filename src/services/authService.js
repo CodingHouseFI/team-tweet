@@ -1,3 +1,4 @@
 app.service("authService", function() {
-  this.currentAccount = JSON.parse(localStorage["firebase:session::teamtweet15"]).twitter.username;
+  let authData = localStorage["firebase:session::teamtweet15"];
+  this.currentAccount = authData && JSON.parse(authData).twitter.username;
 });
